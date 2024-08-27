@@ -1,3 +1,4 @@
+import Locker from "../models/locker.model.js";
 import LockerLocation from "../models/lockerLocation.model.js";
 import LockerStation from "../models/lockerStation.model.js";
 import ApiError from "../utils/ApiError.js";
@@ -55,6 +56,32 @@ export const createLockerStation = asyncHandler(async (req, res) => {
         throw new ApiError(500, "Failed to create the locker Station", error)
 
     }
+})
+
+
+
+export const createLocker = asyncHandler(async (req, res) => {
+
+    const { lockerNumber, size } = req.body
+
+    try {
+        const locker = await Locker.create({
+
+            lockerNumber,
+            size
+        })
+
+
+        console.log("Successfully created the locker");
+
+        return res.status(200).json(new ApiResponse(200, locker, "Successfully created the locker"))
+    } catch (error) {
+
+        console.log("Failed to create the locker ", error);
+        throw new ApiError(500, "Failed to create the locker", error)
+
+    }
+
 })
 
 
