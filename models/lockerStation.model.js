@@ -2,6 +2,8 @@ import mongoose, { Schema } from "mongoose";
 
 
 const lockerStationSchema = new Schema({
+
+    name: { type: String, required: true },
     status: {
         type: String,
         enum: ["close", "open", "maintenance"],
