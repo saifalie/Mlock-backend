@@ -26,8 +26,28 @@ const lockerSchema = new Schema({
     rentalPrice: {
         type: Number,
         required: true,
-        default: 10
-    }
+        default: 10  // Default value, will be overwritten by the middleware if necessary
+    },
+    checkInTime: {
+        type: Date,
+    },
+    checkOutTime: {
+        type: Date,
+    },
+    status: {
+        type: String,
+        enum: ["open", "close"],
+        default: "close"
+    },
+    extraTime: {
+        type: Number,
+        default: 0
+    },
+    history: [{
+        type: Schema.Types.ObjectId,
+        ref: "LockerHistory"
+    }]
+
 
 })
 
@@ -58,4 +78,4 @@ lockerSchema.pre("save", function (next) {
 
 
 const Locker = mongoose.model("Locker", lockerSchema)
-export default Locker
+export default Locker   
