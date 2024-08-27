@@ -85,3 +85,27 @@ export const createLocker = asyncHandler(async (req, res) => {
 })
 
 
+export const addLockerToStation = asyncHandler(async (req, res) => {
+
+    const { lockerId, lockerStationId } = req.body
+
+    try {
+        const instance = await LockerStation.findByIdAndUpdate(lockerStationId, {
+            $push: { lockers: lockerId },
+
+        },
+            { new: true })
+
+        console.log("Successfully add the locker in the lockerStation");
+
+        return res.status(200).json(new ApiResponse(200, instance, "Successfully add the locker in the lockerStation"))
+
+
+    } catch (error) {
+
+        console.log("Failed to add the locker in the lockerStation", error);
+        throw new ApiError(500, "Failed to add the locker in the lockerStation", error)
+
+    }
+
+})
