@@ -49,7 +49,7 @@ const lockerSchema = new Schema({
     }]
 
 
-})
+}, { timestamps: true })
 
 // Pre-save middleware to set the rentalPrice based on the size
 
