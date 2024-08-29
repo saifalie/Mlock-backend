@@ -3,6 +3,7 @@ import cors from "cors"
 import http from "http"
 import { initializeSocket } from "../sockets/socket.js"
 import adminSchema from "../routes/admin.route.js"
+import lockerRouter from "../routes/locker.route.js"
 
 const app = express()
 
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true }))
 
 
 app.use("/api/v1/admin", adminSchema)
+app.use("/api/v1/locker", lockerRouter)
 
 
 

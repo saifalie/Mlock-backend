@@ -16,11 +16,6 @@ export const initializeSocket = (server) => {
         module.default(io)
     })
 
-
-
-
-    
-
     return io
 }
 
