@@ -6,7 +6,7 @@ const lockerRouter = Router()
 
 
 
-lockerRouter.route("/").get(listAllLockers)
+lockerRouter.route("/:stationID").get(listAllLockers)
 
 
 
